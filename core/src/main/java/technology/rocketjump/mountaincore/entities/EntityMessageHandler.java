@@ -638,6 +638,9 @@ public class EntityMessageHandler implements GameContextAware, Telegraph {
 			case MessageType.SAPIENT_CREATURE_INSANITY: {
 				return handleInsanity((Entity) msg.extraInfo);
 			}
+			case MessageType.SAPIENT_CREATURE_INSANITY_WARNING: {
+				return handleInsanityWarning((Entity) msg.extraInfo);
+			}
 			case MessageType.SETTLER_TANTRUM: {
 				return handleSettlerTantrum((Entity) msg.extraInfo);
 			}
@@ -965,6 +968,22 @@ public class EntityMessageHandler implements GameContextAware, Telegraph {
 		dropEquippedItems(entity, entityPosition);
 
 		Notification brokenNotification = new Notification(NotificationType.SETTLER_MENTAL_BREAK, null, new Selectable(entity, 0));
+		brokenNotification.addTextReplacement("character", i18nTranslator.getDescription(entity));
+		messageDispatcher.dispatchMessage(MessageType.POST_NOTIFICATION, brokenNotification);
+
+		return true;
+	}
+
+	private boolean handleInsanityWarning(Entity entity) {
+		Vector2 entityPosition = entity.getLocationComponent().getWorldOrParentPosition();
+
+		// FIXME: this is likely wrong place to do this
+		// (this adds happiness to prevent infinite notification loop ... similar to as done for Tantrum in AssignedGoalFactory))
+		// (but maybe/likely it is not desired here)
+		// (is it worth its own Goal?)
+		entity.getComponent(HappinessComponent.class).add(HappinessComponent.HappinessModifier.HAD_A_TANTRUM);
+
+		Notification brokenNotification = new Notification(NotificationType.SETTLER_MENTAL_BREAK_WARNING, null, new Selectable(entity, 0));
 		brokenNotification.addTextReplacement("character", i18nTranslator.getDescription(entity));
 		messageDispatcher.dispatchMessage(MessageType.POST_NOTIFICATION, brokenNotification);
 

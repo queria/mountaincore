@@ -19,6 +19,7 @@ import java.util.*;
 public class HappinessComponent implements InfrequentlyUpdatableComponent {
 
 	public static final int MAX_HAPPINESS_VALUE = 100;
+	public static final int WARN_HAPPINESS_VALUE = -80;
 	public static final int MIN_HAPPINESS_VALUE = -100;
 	private final Map<HappinessModifier, Double> timesToExpiry = new EnumMap<>(HappinessModifier.class);
 

@@ -202,9 +202,12 @@ public class CreatureBehaviour implements BehaviourComponent, Destructible, Sele
 		}
 
 		if (attributes.getRace().getBehaviour().getIsSapient() && !isInMilitary) {
-			if (attributes.getSanity().equals(Sanity.SANE) && attributes.getConsciousness().equals(AWAKE) &&
-					happinessComponent != null && happinessComponent.getNetModifier() <= HappinessComponent.MIN_HAPPINESS_VALUE) {
-				messageDispatcher.dispatchMessage(MessageType.SAPIENT_CREATURE_INSANITY, parentEntity);
+			if (attributes.getSanity().equals(Sanity.SANE) && attributes.getConsciousness().equals(AWAKE) && happinessComponent != null) {
+				if (happinessComponent.getNetModifier() <= HappinessComponent.MIN_HAPPINESS_VALUE) {
+					messageDispatcher.dispatchMessage(MessageType.SAPIENT_CREATURE_INSANITY, parentEntity);
+				} else if (happinessComponent.getNetModifier() <= HappinessComponent.WARN_HAPPINESS_VALUE) {
+					messageDispatcher.dispatchMessage(MessageType.SAPIENT_CREATURE_INSANITY_WARNING, parentEntity);
+				}
 			}
 		}
 	}
