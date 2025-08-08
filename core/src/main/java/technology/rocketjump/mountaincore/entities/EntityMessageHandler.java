@@ -302,7 +302,7 @@ public class EntityMessageHandler implements GameContextAware, Telegraph {
 						if (removedEntity.getType().equals(EntityType.FURNITURE)) {
 							FurnitureEntityAttributes attributes = (FurnitureEntityAttributes) removedEntity.getPhysicalEntityComponent().getAttributes();
 							for (GridPoint2 extraTileOffset : attributes.getCurrentLayout().getExtraTiles()) {
-								MapTile extraTile = gameContext.getAreaMap().getTile(mapTile.getTilePosition().cpy().add(extraTileOffset));
+								MapTile extraTile = mapTile == null ? null : gameContext.getAreaMap().getTile(mapTile.getTilePosition().cpy().add(extraTileOffset));
 								if (extraTile != null) {
 									extraTile.removeEntity(removedEntity.getId());
 								}
