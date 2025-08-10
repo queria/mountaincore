@@ -1,12 +1,10 @@
-{
-  "_info": "To mod this file, replace it entirely. This file defines the color of sunlight outdoors at different times of the day, times are in hours, rgb values are out of 255",
-  "colors": {
-    "Darkness": [38, 38, 56],
-    "Moonlight": [50, 60, 100],
-    "Dawn": [90, 110, 140],
-    "Sunrise": [230, 220, 170],
+{ "_info": "To mod this file, replace it entirely. This file defines the color of sunlight outdoors at different times of the day, times are in hours, rgb values are out of 255", "colors": {
+    "Darkness": [88, 88, 106],
+    "Moonlight": [100, 110, 150],
+    "Dawn": [140, 160, 190],
+    "Sunrise": [230, 220, 200],
     "Sunlight": [255, 255, 255],
-    "Sunset": [240, 210, 170]
+    "Sunset": [240, 210, 200]
   },
   "phases": [
     {
