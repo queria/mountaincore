@@ -323,11 +323,13 @@ public class TiledMapFactory {
 
 	private List<QuantifiedItemTypeWithMaterial> item(String itemTypeName, int quantity, String materialName) {
 		ItemType itemType = itemTypeDictionary.getByName(itemTypeName);
+		List<QuantifiedItemTypeWithMaterial> result = new ArrayList<>();
+
 		if (itemType == null) {
 			Logger.error("Could not find item type with name " + itemTypeName + " to init settlement with");
+			return result;
 		}
 
-		List<QuantifiedItemTypeWithMaterial> result = new ArrayList<>();
 
 		while (quantity > 0) {
 			int amountInThisStack = Math.min(quantity, itemType.getMaxStackSize());

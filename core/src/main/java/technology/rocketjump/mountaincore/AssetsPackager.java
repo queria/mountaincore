@@ -100,6 +100,7 @@ public class AssetsPackager {
 			currentChecksums = readChecksums(assetDir);
 		} catch (IOException e) {
 			Logger.error(e, "Could not read existing checksums");
+			currentChecksums = new TreeMap<>();
 		}
 
 		for (ModArtifactDefinition artifactDefinition : modParser.getArtifactListing().getAll()) {

@@ -113,7 +113,7 @@ public class AssignedGoalFactory {
 					}
 
 					if (attributes.getItemType().getIsAmmoType() != null) {
-						Long assignedWeaponId = militaryComponent.getAssignedWeaponId();
+						Long assignedWeaponId = militaryComponent == null ? null : militaryComponent.getAssignedWeaponId();
 						if (assignedWeaponId != null && militaryComponent.isInMilitary()) {
 							Entity assignedWeapon = gameContext.getEntities().get(assignedWeaponId);
 							if (assignedWeapon != null && assignedWeapon.getPhysicalEntityComponent().getAttributes() instanceof ItemEntityAttributes weaponAttributes) {

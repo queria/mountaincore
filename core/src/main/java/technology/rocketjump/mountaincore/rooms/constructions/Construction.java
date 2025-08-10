@@ -271,7 +271,8 @@ public abstract class Construction implements Persistable, SelectableDescription
 				JSONObject entryJson = new JSONObject(true);
 				entryJson.put("position", JSONUtils.toJSON(entry.getKey()));
 				entryJson.put("allocation", entry.getValue().getItemAllocationId());
-			}
+                itemAllocationsJson.add(entryJson);
+            }
 			asJson.put("placedItemAllocations", itemAllocationsJson);
 		}
 
